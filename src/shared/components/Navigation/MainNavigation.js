@@ -6,7 +6,7 @@ import NavLinks from "./NavLinks";
 const MainNavigation = () => {
   return (
     <MainHeader className={classes.MainNavigation}>
-        <h2 className={classes["MainNavigation__title"]}>Code Practices..</h2>
+        <h2 className={classes["MainNavigation__title"]}>Play, Practice, Peace..</h2>
       <NavLinks />
     </MainHeader>
   );

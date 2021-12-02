@@ -12,7 +12,7 @@ const Problem1 = (props) => {
     const reader = new FileReader();
     const isFileSelected = !!e.target.files[0];
     if (!isFileSelected) {
-      console.log(e.target.files[0]);
+      alert("Please select a file");
       return;
     }
     reader.readAsText(e.target.files[0]);
@@ -21,7 +21,6 @@ const Problem1 = (props) => {
       const response = await reader.result;
       const dataSplit = response.split("\n");
       setDataA(dataSplit);
-      console.log(dataSplit);
       setHasData(true);
     };
   };
@@ -40,7 +39,7 @@ const Problem1 = (props) => {
       // arg1: array of numbers
       //arg2: number of elements in the sliding window
 
-      //return:  the number of times the sum of measurements in this sliding window increases compared to the previous sum
+      //return:  the number of times the sum of total in the sliding window increases compared to the previous sum 
       let sum = 0;
       let count = 0;
       let slidingWindow = [];
@@ -84,12 +83,10 @@ const Problem1 = (props) => {
         For example, if the input is [1, 2, 3, 4, 5, 2 ], the first element is
         skiped. The total number of increasing subsequences is 4.
       </p>
-      <p>
-        <b>Note:</b> The containers are sorted in ascending order.
-      </p>
 
       <h1>Number of Increasing subsequences: {numberOfIncreasing}</h1>
-
+      
+      <p>What is the number of times the sum of total in the sliding window increases compared to the previous sum ?</p>
       <h1>
         Number of Increasing subsequences slidingWindow:{" "}
         {numberOfIncreasingSlidingWindow}
