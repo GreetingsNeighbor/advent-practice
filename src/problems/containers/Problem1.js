@@ -2,45 +2,77 @@ import React, { useCallback } from "react";
 import { useEffect } from "react/cjs/react.development";
 
 const Problem1 = (props) => {
-
-
-  let data = null;
   const [numberOfIncreasing, setNumberOfIncreasing] = React.useState(0);
+  const [numberOfIncreasingSlidingWindow, setNumberOfIncreasingSlidingWindow] =
+    React.useState(0);
   const [dataA, setDataA] = React.useState();
   const [hasData, setHasData] = React.useState(false);
- 
-  const readFile = async (e) => {
 
+  const readFile = async (e) => {
     const reader = new FileReader();
+    const isFileSelected = !!e.target.files[0];
+    if (!isFileSelected) {
+      console.log(e.target.files[0]);
+      return;
+    }
     reader.readAsText(e.target.files[0]);
+
     reader.onload = async () => {
       const response = await reader.result;
-        data = response.split("\n");
-        setDataA(data);
-      console.log(data);
+      const dataSplit = response.split("\n");
+      setDataA(dataSplit);
+      console.log(dataSplit);
       setHasData(true);
     };
   };
 
-  const countOfIncreasingSubsequences = useCallback(() => {
+  const getCountOfIncreasingSubsequences = useCallback(() => {
     let count = 0;
-    if (dataA === null) {
-      console.log("data is null");
-      return;
-    }
     for (let i = 1; i < dataA.length; i++) {
-      if (dataA[i] > dataA[i - 1]) {
+      if (parseInt(dataA[i - 1]) < parseInt(dataA[i])) {
         count++;
       }
     }
     setNumberOfIncreasing(count);
   }, [dataA]);
+  const countIncreasingSumOfSlidingWindow = useCallback(
+    (numberOfElements = 3) => {
+      // arg1: array of numbers
+      //arg2: number of elements in the sliding window
 
-  useEffect(()=>{
-    if(hasData){
-      countOfIncreasingSubsequences();
+      //return:  the number of times the sum of measurements in this sliding window increases compared to the previous sum
+      let sum = 0;
+      let count = 0;
+      let slidingWindow = [];
+      for (let i = 0; i < dataA.length; i++) {
+        sum += parseInt(dataA[i]);
+        slidingWindow.push(sum);
+        if (i >= numberOfElements - 1) {
+          sum -= parseInt(dataA[i - numberOfElements + 1]);
+          slidingWindow.shift();
+        }
+        if (i > numberOfElements - 1) {
+          if (slidingWindow[0] < slidingWindow[1]) {
+            count++;
+          }
+        }
+      }
+      setNumberOfIncreasingSlidingWindow(count);
+    },
+    [dataA]
+  );
+  useEffect(() => {
+    if (hasData) {
+      getCountOfIncreasingSubsequences();
+      countIncreasingSumOfSlidingWindow();
     }
-  }, [hasData, dataA, countOfIncreasingSubsequences])
+  }, [
+    hasData,
+    dataA,
+    getCountOfIncreasingSubsequences,
+    countIncreasingSumOfSlidingWindow,
+  ]);
+
   return (
     <div className="problem">
       <h3>Problem 1</h3>
@@ -58,11 +90,16 @@ const Problem1 = (props) => {
 
       <h1>Number of Increasing subsequences: {numberOfIncreasing}</h1>
 
+      <h1>
+        Number of Increasing subsequences slidingWindow:{" "}
+        {numberOfIncreasingSlidingWindow}
+      </h1>
+
       <input type="file" onChange={readFile} />
       {/* <label>Answer:</label>
         <textarea ></textarea> */}
       {hasData && (
-        <button onClick={countOfIncreasingSubsequences}>Solve</button>
+        <button onClick={getCountOfIncreasingSubsequences}>Solve</button>
       )}
     </div>
   );
