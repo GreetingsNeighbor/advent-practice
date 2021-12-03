@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect } from "react";
 
 const Problem2 = () => {
-  const [answer, setAnswer] = React.useState([{ forward: 0, depth: 0 }]);
+  const [answer, setAnswer] = React.useState([
+    { solutionOne: 0, solutionTwo: 0 },
+  ]);
   const [dataList, setDataList] = React.useState([{ forward: 0, depth: 0 }]);
-  
+
   const readFile = async (e) => {
     const reader = new FileReader();
     const isFileSelected = !!e.target.files[0];
@@ -16,9 +18,8 @@ const Problem2 = () => {
     reader.onload = async () => {
       const response = await reader.result;
       const dataSplit = response.split("\n");
-     
+
       setDataList(dataSplit);
-     
     };
   };
 
@@ -30,25 +31,31 @@ const Problem2 = () => {
     let tempForward = 0;
     let tempDepth = 0;
 
+    
+    let tempAim = 0;
+    let tempForwardTwo = 0;
+    let tempDepthTwo = 0;
+
     for (let i = 0; i < dataList.length; i++) {
       const directionInstruction = dataList[i].toString().split(" ");
       const instruction = directionInstruction[0].toString();
       const value = parseInt(directionInstruction[1]);
       if (instruction === "forward") {
+        tempForwardTwo += value;
+        tempDepthTwo += tempAim*value;
         tempForward += value;
       } else if (instruction === "up") {
+        tempAim-=value;
         tempDepth -= value;
+
       } else if (instruction === "down") {
+          tempAim+=value;
         tempDepth += value;
       }
     }
 
-   
-    setAnswer({
- 
-      forward: tempForward,
-      depth: tempDepth,
-    });
+    setAnswer((prev) => ({ ...prev, solutionOne: tempForward * tempDepth, solutionTwo: tempForwardTwo * tempDepthTwo }));
+
   }, [dataList]);
   useEffect(() => {
     if (dataList.length > 0) {
@@ -67,7 +74,9 @@ const Problem2 = () => {
         For example, the input [forward 3, up 4, down 5, and forward 2] should
         give 5. The input [forward 1, down 2, up 0] should give 2.
       </p>
-      <h3>Product: {answer.depth * answer.forward}</h3>
+      <h3>
+        Product: {answer.solutionOne} , Solution Two: {answer.solutionTwo}
+      </h3>
       <input type="file" onChange={readFile} />
     </div>
   );
