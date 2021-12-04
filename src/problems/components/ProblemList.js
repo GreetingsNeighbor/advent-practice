@@ -2,11 +2,9 @@ import React from "react";
 import ProblemItem from "./ProblemItem";
 import classes from "./ProblemList.module.css";
 
-const DUMMY_PROBLEMS = [
-  { id: 1, title: "Problem 1: Sonar Sweep", date: "12/1/2021" },
-  { id: 2, title: "Problem 2", date: "12/2/2021" },
-];
-const ProblemsList = () => {
+
+const ProblemsList = (props) => {
+  const DUMMY_PROBLEMS = props.problemList;
   return (
 
       <ul className={classes.ProblemList}>
