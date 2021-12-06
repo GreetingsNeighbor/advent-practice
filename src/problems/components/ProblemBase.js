@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, {  useEffect } from 'react';
 
 const ProblemBase = (props) => {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const {title, description, solver} = props;
+    
     const [fileData, setFileData] = React.useState(null);
     const [answerOne, setAnswerOne] = React.useState(null);
     const [answerTwo, setAnswerTwo] = React.useState(null);
 
-    const {title, description, solver} = props;
+    
     const fileSelection = async (e) => {
         const fileName = e.target.files[0];
         if(!!fileName) {
@@ -40,6 +41,7 @@ const ProblemBase = (props) => {
     <div>
       <h1>{title}</h1>
       <p>{description}</p>
+      {props.children}
       <p> {!!answerOne ? answerOne : 'No answer one yet'}</p>
       <p> {!!answerTwo ? answerTwo : 'No answer two yet'}</p>
      

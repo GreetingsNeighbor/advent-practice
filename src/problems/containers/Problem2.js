@@ -25,13 +25,14 @@ const Problem2 = () => {
 
   const solve = useCallback(() => {
     // Given a list of consisting of forward x, down y, and up z. Where x is the number of steps forward, y is the depth up, and z is the depth down.
-    //Return the product of sum(x)*(sum(y)-sum(z))
+    //for solutionOne return the product of sum(x)*(sum(y)-sum(z))
     //example list: [forward 3, up 4, down 5, and forward 2] the product should be (3+2)*(5-4) = (5)*(1) = 5
 
     let tempForward = 0;
     let tempDepth = 0;
-
+    // SolutionTwo
     
+    //for solutionTwo return the sum of the product of foward * depth
     let tempAim = 0;
     let tempForwardTwo = 0;
     let tempDepthTwo = 0;
@@ -42,20 +43,22 @@ const Problem2 = () => {
       const value = parseInt(directionInstruction[1]);
       if (instruction === "forward") {
         tempForwardTwo += value;
-        tempDepthTwo += tempAim*value;
+        tempDepthTwo += tempAim * value;
         tempForward += value;
       } else if (instruction === "up") {
-        tempAim-=value;
+        tempAim -= value;
         tempDepth -= value;
-
       } else if (instruction === "down") {
-          tempAim+=value;
+        tempAim += value;
         tempDepth += value;
       }
     }
 
-    setAnswer((prev) => ({ ...prev, solutionOne: tempForward * tempDepth, solutionTwo: tempForwardTwo * tempDepthTwo }));
-
+    setAnswer((prev) => ({
+      ...prev,
+      solutionOne: tempForward * tempDepth,
+      solutionTwo: tempForwardTwo * tempDepthTwo,
+    }));
   }, [dataList]);
   useEffect(() => {
     if (dataList.length > 0) {
