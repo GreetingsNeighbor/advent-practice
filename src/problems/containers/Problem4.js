@@ -12,6 +12,7 @@ const Problem4 = () => {
     let answertwo = 0;
     const drawnNumbers = lines[0].split(",");
     let cards = [];
+    let cardWinOrder = [];
 
     //remove first index from lines
     lines.shift();
@@ -80,7 +81,9 @@ const Problem4 = () => {
             if (cardsetWon[j] === 1) {
                 break;
               }
-       
+            const filtedCount = cardsetWon.filter( (item) => item === 0).length;
+        
+      
             
             if (cardset[j].sets[k].set[l].toString() === drawnNumbers[i]) {
               cardset[j].sets[k].set[l] = -1;
@@ -88,19 +91,12 @@ const Problem4 = () => {
               cols[j][l]++;
             }
             if (cols[j].includes(5)) {
-                     const filtedCount = cardsetWon.filter( (item) => item === 0).length;
-        
-            if (filtedCount ===0) {
-                const x = calculateNonNegativeSumOfSet(j);
-              
-                answertwo = x* drawnNumbers[i-1];
-                return { answer1: answerone, answer2: answertwo };
-            }
               console.log("answer", drawnNumbers[i]);
               setBingoCards(cardset);
               const x = calculateNonNegativeSumOfSet(j);
               answerone = drawnNumbers[i] * x;
               cardsetWon[j] = 1;
+              cardWinOrder.push(answerone);
             //   return { answer1: drawnNumbers[i] * x, answer2: cards.length };
             }
           }
@@ -109,6 +105,7 @@ const Problem4 = () => {
             const x = calculateNonNegativeSumOfSet(j);
             answerone = drawnNumbers[i] * x;
             cardsetWon[j] = 1;
+            cardWinOrder.push(answerone);
             // return { answer1: drawnNumbers[i] * x, answer2: cards.length };
           }
         }
@@ -117,7 +114,7 @@ const Problem4 = () => {
 
     setBingoCards(cardset);
     cardset = [];
-    return { answer1: answerone, answer2: answertwo };
+    return { answer1: cardWinOrder[0], answer2: cardWinOrder.pop() };
   }, []);
 
   return (

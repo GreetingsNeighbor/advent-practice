@@ -1,6 +1,6 @@
 .bingoCard {
    list-style: none;
-    padding: 1rem;
+    padding: 1;
     
 }
 
@@ -8,5 +8,5 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 0;
 }
