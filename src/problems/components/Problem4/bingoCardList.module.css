@@ -1,12 +1,36 @@
 .bingoCard {
-   list-style: none;
-    padding: 1;
+    
     
 }
 
-.bingCardList {
+.bingCardList{
+    border: black solid 1px;
+    display:inline-block;
+    margin: 1rem;
+    justify-content: center;
+}
+
+.bingCardList ul{
+
+ 
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0;
+    align-items: left;
+    justify-content: center;
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+}
+.bingoCard li{
+
+    display: inline-flex;
+    
+
+}
+
+.bingoCard-div {
+    
+    width: 30px;
+    text-align: center;
+    /* border: black solid 1px;     */
+    text-decoration: none;
 }

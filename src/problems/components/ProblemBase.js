@@ -41,9 +41,10 @@ const ProblemBase = (props) => {
     <div>
       <h1>{title}</h1>
       <p>{description}</p>
+      <p> {!!answerOne ?  `Part 1: ${answerOne}`: 'No answer one yet'}</p>
+      <p> {!!answerTwo ? `Part 2: ${answerTwo}`  : 'No answer two yet'}</p>
       {props.children}
-      <p> {!!answerOne ? answerOne : 'No answer one yet'}</p>
-      <p> {!!answerTwo ? answerTwo : 'No answer two yet'}</p>
+
      
 
         <input type='file' name='file' onChange={fileSelection}/>

@@ -11,7 +11,7 @@ const BingoCardList = (props) => {
     <div className={classes.bingCardList}>
       {Object.keys(bingoCards).map((card) => (
 
-         <BingoCard key={card } card={bingoCards[card].set}></BingoCard>
+        <ul><BingoCard key={card } card={bingoCards[card].set}></BingoCard></ul> 
       ))}
     </div>
   );
@@ -21,12 +21,12 @@ export const BingoCard = (props) => {
   const card = props.card;
   
   return (
-    <Fragment>
-      <ul className={classes.bingoCard}>
-        {card.map((item) => {
-          return <li >{item.toString()}</li>;
-        })}
-      </ul>
+    <Fragment className={classes.bingoCard}>
+      
+        {card.map((item) => 
+           <li ><div className={classes["bingoCard-div"]}> {item.toString()} </div>  </li>
+        )}
+    
     </Fragment>
   );
 };

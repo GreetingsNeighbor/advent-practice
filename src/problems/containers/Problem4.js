@@ -118,7 +118,7 @@ const Problem4 = () => {
   }, []);
 
   return (
-    <ProblemBase title="Problem 4" description="description" solver={solver}>
+    <ProblemBase title="Problem 4" description="Product of the summation of non-drawn numbers on bingo card and the last dawn number.  Part one first card to win. Part two last card to win" solver={solver}>
       {Object.keys(bingcards).map((cardsSet) => (
         //   console.log(bingcards[cardsSet].sets)
         <BingoCardList key={cardsSet} bingoCards={bingcards[cardsSet].sets} />
