@@ -42,11 +42,15 @@ const Problem6 = () => {
       return mapsum;
     };
     const table = [];
-
+    const table2 = [];
     for (let i = 0; i < 6; i++) {
-      const info =  calculateFishReproduction(256, i);
+      const info =  calculateFishReproduction(80, i);
       table.push(info);
     }
+    for (let i = 0; i < 6; i++) {
+        const info =  calculateFishReproduction(256, i);
+        table.push(info);
+      }
     const initialArryFishCount = Array(6).fill(0);
 
     for (let i = 0; i < timerArray.length; i++) {
