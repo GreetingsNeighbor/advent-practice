@@ -7,7 +7,9 @@ const DUMMY_PROBLEMS = [
   { id: 1, title: "Problem 1: Sonar Sweep", date: "12/1/2021" },
   { id: 2, title: "Problem 2", date: "12/2/2021" },
   { id: 3, title: "Problem 3", date: "12/3/2021" },
-  { id: 4, title: "Problem 4", date: "12/4/2021" }
+  { id: 4, title: "Problem 4", date: "12/4/2021" },
+  { id: 5, title: "Problem 5", date: "12/5/2021" },
+  { id: 6, title: "Problem 6", date: "12/6/2021" }
 ];
 const Problem = () => {
   const params = useParams();

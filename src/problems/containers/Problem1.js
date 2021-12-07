@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useEffect } from "react/cjs/react.development";
-
+//lesson learned: parseInt
 const Problem1 = (props) => {
   const [numberOfIncreasing, setNumberOfIncreasing] = React.useState(0);
   const [numberOfIncreasingSlidingWindow, setNumberOfIncreasingSlidingWindow] =
