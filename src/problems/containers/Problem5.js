@@ -19,10 +19,6 @@ const Problem5 = () => {
       y1 = parseInt(y1);
       x2 = parseInt(x2);
       y2 = parseInt(y2);
-      //   console.log(x1, y1, x2, y2);
-      //add to coordinate
-
-      //loop from x1 through x2
 
       if (y1 === y2) {
         if (x1 > x2) {
@@ -54,6 +50,7 @@ const Problem5 = () => {
           }
         }
       }
+      
       //loop if the difference of abs(x1-x2) is the same as the difference of abs(y1-y2)
       if (Math.abs(x1 - x2) === Math.abs(y1 - y2)) {
         console.log(x1, y1, x2, y2);

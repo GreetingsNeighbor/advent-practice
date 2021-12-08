@@ -6,7 +6,9 @@ const Problem7 = () => {
  
     const positionsList = input[0].split(",").map((pos) => parseInt(pos));
     const min = Math.min(...positionsList);
+
     const max = Math.max(...positionsList);
+
     let fuelConsumptions = [];
     for (let i = min; i <= max; i++) {
       fuelConsumptions.push(0);
@@ -18,8 +20,6 @@ const Problem7 = () => {
 
     const leastFuelConsumption = Math.min(...fuelConsumptions);
 
-
-
     let newFuelConsumptions = [];
     for (let i = min; i <= max; i++) {
       newFuelConsumptions.push(0);
@@ -30,18 +30,10 @@ const Problem7 = () => {
         
       }
     }
+
     const newLeastFuelConsumption = Math.min(...newFuelConsumptions);
-
-
-    // for (let i = 0; i < positionsList.length; i++) {
-
-    //   let n = Math.abs(positionsList[i]-leastFuelConsumptionIndex);
-    //   for(let j = 0; j < n; j++) {
-    //     newFuelConsumption2+=j+1;
-    //   }
-
-    // }
     console.log(newLeastFuelConsumption);
+    
     const newLeastFuelConsumptionIndex = newFuelConsumptions.indexOf(newLeastFuelConsumption);
     console.log(newLeastFuelConsumptionIndex);
     return { answer1: leastFuelConsumption, answer2: newLeastFuelConsumption };
