@@ -11,6 +11,7 @@ import Problem6 from "./Problem6";
 import Problem7 from "./Problem7";
 import Problem8 from "./Problem8";
 import Problem9 from "./Problem9";
+import Problem10 from "./Problem10";
 import classes from "./ProblemSolution.module.css";
 // import classes from './ProblemSolution.module.css';
 
@@ -31,7 +32,7 @@ const ProblemSolution = () => {
       {problemNumber === "7" && <Problem7 /> }
       {problemNumber === "8" && <Problem8 /> }
       {problemNumber === "9" && <Problem9 /> }
-      {problemNumber === "10" && <Problem8 /> }
+      {problemNumber === "10" && <Problem10 /> }
     </Card>
   );
 };
